@@ -175,6 +175,18 @@ Download the Cosmos-Predict2.5-2B model from Hugging Face:
 huggingface-cli download nvidia/Cosmos-Predict2.5-2B --revision diffusers/base/post-trained --local-dir /path/to/Cosmos-Predict2.5-2B
 ```
 
+## Model Zoo
+
+We release pretrained checkpoints to facilitate reproduction.
+
+### Available Checkpoints
+
+| Model | Description | Dataset | Success Rate | Link |
+| --- | --- | --- | --- | --- |
+| **DiT4DiT-RoboCasa-GR1** | DiT4DiT for RoboCasa-GR1 tabletop tasks | RoboCasa-GR1 | 56.7 | [🤗 Hugging Face](https://huggingface.co/TeliMa/dit4dit_robocasa_gr1/tree/main) |
+
+> **Note:** More checkpoints will be released soon. Stay tuned!
+
 ## Quick Start
 
 ### Simulation

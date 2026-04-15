@@ -54,6 +54,17 @@ Checkpoints will be saved to `{run_root_dir}/{run_id}/`. Training supports:
 
 ## Inference
 
+### Download Pretrained Checkpoint
+
+You can download our pretrained DiT4DiT-RoboCasa-GR1 checkpoint from Hugging Face to directly run evaluation:
+
+```bash
+huggingface-cli download TeliMa/dit4dit_robocasa_gr1 --local-dir /path/to/dit4dit_robocasa_gr1
+```
+
+See the [Model Zoo](../README.md#model-zoo) for all available checkpoints.
+
+> **Note:** After downloading, remember to update **line 58** of `config.yaml` in the checkpoint directory to point to your local Cosmos-Predict2.5-2B path.
 
 ### Option A: Single Evaluation
 
