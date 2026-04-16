@@ -451,13 +451,11 @@ class VLATrainer(TrainerUtils):
         if self.accelerator.is_main_process:
             normalized_actions = output_dict["normalized_actions"]  # B, T, D
             actions = np.array(actions)  # convert actions to numpy.ndarray
-            ##action_mask = np.array(action_mask)  # convert action_mask to numpy.ndarray
-            # B, Chunk, dim = actions.shape
-            num_pots = np.prod(actions.shape)
-            # Compute the metric score
-            score = TrainerUtils.euclidean_distance(normalized_actions, actions)
-            average_score = score / num_pots
-            step_metrics["mse_score"] = average_score
+            action_mask = np.array(action_mask)  # convert action_mask to numpy.ndarray [B, T, D]
+            # Apply action_mask: only compute MSE on valid (True) dimensions
+            masked_diff = (normalized_actions - actions) * action_mask
+            mse = (masked_diff ** 2).sum() / action_mask.sum()
+            step_metrics["mse_score"] = mse
 
         del examples
         dist.barrier()  # ensure all processes are synchronized

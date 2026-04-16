@@ -22,8 +22,8 @@ N_ACTION_STEPS_DEFAULT=12
 
 BASE_PORT=6398
 NUM_GPUS=8
-# 指定要使用的GPU ID列表，例如: "0,1,2,3" 或 "4,5,6,7"
-# 如果不指定，默认使用 0,1,2,3
+# Specify GPU IDs to use, e.g.: "0,1,2,3" or "4,5,6,7"
+# Defaults to "0,1,2,3,4,5,6,7" if not specified
 GPU_LIST_DEFAULT="0,1,2,3,4,5,6,7"
 
 # Parse command-line arguments
@@ -33,11 +33,11 @@ MAX_EPISODE_STEPS=${3:-$MAX_EPISODE_STEPS_DEFAULT}
 N_ACTION_STEPS=${4:-$N_ACTION_STEPS_DEFAULT}
 GPU_LIST_STR=${5:-$GPU_LIST_DEFAULT}
 
-# 将GPU列表字符串转换为数组
+# Convert GPU list string to array
 IFS=',' read -ra GPU_ARRAY <<< "$GPU_LIST_STR"
 NUM_GPUS=${#GPU_ARRAY[@]}
 
-# 验证GPU数量
+# Validate GPU count
 if [ ${NUM_GPUS} -eq 0 ]; then
     echo "Error: must specify at least one GPU"
     exit 1
@@ -66,7 +66,7 @@ EvalEnv() {
     local N_ENVS=$7
     local MAX_EPISODE_STEPS=$8
     local N_ACTION_STEPS=$9
-    # save root CKPT_PATH 的 parent 文件夹
+    # Save root: parent directory of CKPT_PATH
     local SAVE_ROOT=$(dirname "$(dirname "$CKPT_PATH")")
     local ckpt_name=$(basename "$CKPT_PATH" .pt)
     local VIDEO_OUT_PATH="${SAVE_ROOT}/videos/${ckpt_name}/n_action_steps_${N_ACTION_STEPS}_max_episode_steps_${MAX_EPISODE_STEPS}_n_envs_${N_ENVS}_${ENV_NAME}"

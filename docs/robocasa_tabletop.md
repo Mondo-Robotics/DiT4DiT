@@ -66,6 +66,8 @@ See the [Model Zoo](../README.md#model-zoo) for all available checkpoints.
 
 > **Note:** After downloading, remember to update **line 58** of `config.yaml` in the checkpoint directory to point to your local Cosmos-Predict2.5-2B path.
 
+
+
 ### Option A: Single Evaluation
 
 **Step 1: Start the policy server**
@@ -76,6 +78,8 @@ CUDA_VISIBLE_DEVICES=0 python deployment/model_server/server_policy.py \
   --port 6398 \
   --use_bf16
 ```
+
+> **Note:** We use Nvidia A100 GPUs to evaluate. If you are using RTX series GPUs for evaluation, remove the `--use_bf16` flag when launching `server_policy.py`.
 
 **Step 2: Run evaluation against the server**
 
