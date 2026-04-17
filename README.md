@@ -40,7 +40,7 @@ DiT4DiT is a <b><span style="color: #FF8C00;">Vision-Action-Model (VAM)</span></
 - **[2026-03-11]** We release the [arXiv paper](https://arxiv.org/abs/2603.10448).
 
 
-### Whole-Body Control (all 1x speed)
+### Whole-Body Control (all 1x speed & autonomous)
 
 <div align="center">
 <table>
@@ -50,10 +50,16 @@ DiT4DiT is a <b><span style="color: #FF8C00;">Vision-Action-Model (VAM)</span></
 <tr>
 <td align="center" colspan="2"><img src="media/shelf_organization.webp" width="800"></td>
 </tr>
+<tr>
+<td align="center" colspan="2"><b>Relocate Chair</b></td>
+</tr>
+<tr>
+<td align="center" colspan="2"><img src="media/relocate_chair.webp" width="800"></td>
+</tr>
 </table>
 </div>
 
-### Tabletop Manipulation (all 1x speed)
+### Tabletop Manipulation (all 1x speed, 1 policy for all tasks)
 
 <div align="center">
 <table>
