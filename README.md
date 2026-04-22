@@ -189,7 +189,8 @@ We release pretrained checkpoints to facilitate reproduction.
 
 | Model | Description | Dataset | Success Rate | Link |
 | --- | --- | --- | --- | --- |
-| **DiT4DiT-RoboCasa-GR1** | DiT4DiT for RoboCasa-GR1 tabletop tasks | RoboCasa-GR1 | 56.7 | [🤗 Hugging Face](https://huggingface.co/TeliMa/dit4dit_robocasa_gr1/tree/main) |
+| **DiT4DiT-LIBERO** | DiT4DiT for LIBERO benchmark | LIBERO | 98.6 | [🤗 Hugging Face](https://huggingface.co/mondo-robotics/dit4dit-model/tree/main/dit4dit_libero) |
+| **DiT4DiT-RoboCasa-GR1** | DiT4DiT for RoboCasa-GR1 tabletop tasks | RoboCasa-GR1 | 56.7 | [🤗 Hugging Face](https://huggingface.co/mondo-robotics/dit4dit-model/tree/main/dit4dit_robocasa_gr1) |
 
 > **Note:** More checkpoints will be released soon. Stay tuned!
 
@@ -197,6 +198,7 @@ We release pretrained checkpoints to facilitate reproduction.
 
 ### Simulation
 
+- **LIBERO**: See the full training and evaluation guide [here](docs/libero.md).
 - **RoboCasa-GR1 Tabletop**: See the full training and evaluation guide [here](docs/robocasa_tabletop.md).
 
 ### Real Robot
@@ -204,6 +206,16 @@ We release pretrained checkpoints to facilitate reproduction.
 Coming soon.
 
 ## Results
+
+### LIBERO Benchmark
+
+| Task Suite | Success Rate |
+|------------|-------------|
+| LIBERO-Spatial | 98.6 |
+| LIBERO-Object | 100.0 |
+| LIBERO-Goal | 99.2 |
+| LIBERO-10 | 96.6 |
+| **Average** | **98.6** |
 
 ### Robocasa-GR1 Benchmark
 
@@ -236,6 +248,8 @@ The following results are obtained using the default training parameters describ
 | FromTrayToTieredbasket | 50.0 | 46.0 | 50.0 |
 | FromTrayToTieredshelf | 42.0 | 36.0 | 28.0 |
 | **Average** | **56.7** | **56.6** | **56.3** |
+
+### LIBERO Benchmark
 
 
 ## Citation

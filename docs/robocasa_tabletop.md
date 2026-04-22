@@ -41,9 +41,19 @@ The training config is defined in `DiT4DiT/config/robocasa/dit4dit_robocasa_gr1.
 ## Launch Training
 
 
+**Single-node:**
+
 ```bash
 bash examples/Robocasa_tabletop/train_files/run_robocasa.sh
 ```
+
+**Multi-node (SLURM):**
+
+```bash
+sbatch examples/Robocasa_tabletop/train_files/submit_robocasa_training.sh
+```
+
+> **Note:** Adjust `#SBATCH -N` (number of nodes) and `#SBATCH --gres=gpu:` (GPUs per node) in the script to control total GPU count. The total number of processes is computed automatically.
 
 Checkpoints will be saved to `{run_root_dir}/{run_id}/`. Training supports:
 - DeepSpeed ZeRO Stage 2/3
@@ -59,7 +69,7 @@ Checkpoints will be saved to `{run_root_dir}/{run_id}/`. Training supports:
 You can download our pretrained DiT4DiT-RoboCasa-GR1 checkpoint from Hugging Face to directly run evaluation:
 
 ```bash
-huggingface-cli download TeliMa/dit4dit_robocasa_gr1 --local-dir /path/to/dit4dit_robocasa_gr1
+huggingface-cli download mondo-robotics/dit4dit-model --include "dit4dit_robocasa_gr1/*" --local-dir /path/to/dit4dit-model
 ```
 
 See the [Model Zoo](../README.md#model-zoo) for all available checkpoints.
