@@ -56,6 +56,12 @@ DiT4DiT is a <b><span style="color: #FF8C00;">Vision-Action-Model (VAM)</span></
 <tr>
 <td align="center" colspan="2"><img src="media/relocate_chair.webp" width="800"></td>
 </tr>
+<tr>
+<td align="center" colspan="2"><b>Assembly Line Work</b></td>
+</tr>
+<tr>
+<td align="center" colspan="2"><img src="media/assembly_line.webp" width="800"></td>
+</tr>
 </table>
 </div>
 
