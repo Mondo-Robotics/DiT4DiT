@@ -1756,11 +1756,14 @@ class LeRobotMixtureDataset(Dataset):
 
                 # If wrist views exist, concatenate prim and wrist side-by-side
                 # per timestep so Cosmos VAE sees a coherent temporal sequence.
-                if len(wrist_t0) > 0 and len(wrist_t0) == len(prim_t0):
-                    all_images = [
-                        torch.cat([p, w], dim=-1)  # (C, H, 2W) width-wise concat
-                        for p, w in zip(prim_t0, wrist_t0)
-                    ]
+                # Supports 1-primary + N-wrist layouts (e.g. 1 head + 2 wrists).
+                T = len(prim_t0)
+                num_wrist = len(wrist_t0) // T if T > 0 else 0
+                if num_wrist > 0 and len(wrist_t0) == num_wrist * T:
+                    all_images = []
+                    for t in range(T):
+                        views = [prim_t0[t]] + [wrist_t0[t + k * T] for k in range(num_wrist)]
+                        all_images.append(torch.cat(views, dim=-1))  # (C, H, (1+num_wrist)*W)
                 else:
                     all_images = prim_t0 + wrist_t0
                 

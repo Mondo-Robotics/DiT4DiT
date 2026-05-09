@@ -225,35 +225,35 @@ Coming soon.
 
 ### Robocasa-GR1 Benchmark
 
-The following results are obtained using the default training parameters described in [Configure Training](#configure-training). We report three independent evaluation runs of the same checkpoint to demonstrate reproducibility. The model consistently achieves an average success rate above 56% across all runs.
+The following results are obtained using the default training parameters described in [Configure Training](#configure-training). We report five independent evaluation runs of the same checkpoint to demonstrate reproducibility. The model consistently achieves an average success rate above 56% across all runs.
 
-| Task | Run 1 | Run 2 | Run 3 |
-|------|-------|-------|-------|
-| BottleToCabinetClose | 50.0 | 72.0 | 68.0 |
-| CanToDrawerClose | 80.0 | 80.0 | 82.0 |
-| CupToDrawerClose | 50.0 | 34.0 | 50.0 |
-| MilkToMicrowaveClose | 58.0 | 60.0 | 38.0 |
-| PotatoToMicrowaveClose | 40.0 | 40.0 | 36.0 |
-| WineToCabinetClose | 60.0 | 48.0 | 60.0 |
-| FromCuttingboardToBasket | 54.0 | 48.0 | 46.0 |
-| FromCuttingboardToCardboardbox | 50.0 | 60.0 | 48.0 |
-| FromCuttingboardToPan | 80.0 | 74.0 | 78.0 |
-| FromCuttingboardToPot | 52.0 | 46.0 | 66.0 |
-| FromCuttingboardToTieredbasket | 44.0 | 54.0 | 50.0 |
-| FromPlacematToBasket | 58.0 | 40.0 | 44.0 |
-| FromPlacematToBowl | 64.0 | 66.0 | 72.0 |
-| FromPlacematToPlate | 66.0 | 62.0 | 64.0 |
-| FromPlacematToTieredshelf | 44.0 | 48.0 | 40.0 |
-| FromPlateToBowl | 64.0 | 74.0 | 54.0 |
-| FromPlateToCardboardbox | 50.0 | 54.0 | 52.0 |
-| FromPlateToPan | 58.0 | 68.0 | 70.0 |
-| FromPlateToPlate | 62.0 | 64.0 | 72.0 |
-| FromTrayToCardboardbox | 52.0 | 50.0 | 60.0 |
-| FromTrayToPlate | 64.0 | 64.0 | 58.0 |
-| FromTrayToPot | 68.0 | 70.0 | 66.0 |
-| FromTrayToTieredbasket | 50.0 | 46.0 | 50.0 |
-| FromTrayToTieredshelf | 42.0 | 36.0 | 28.0 |
-| **Average** | **56.7** | **56.6** | **56.3** |
+| Task | Run 1 | Run 2 | Run 3 | Run 4 | Run 5 |
+|------|-------|-------|-------|-------|-------|
+| BottleToCabinetClose | 50.0 | 72.0 | 68.0 | 64.0 | 70.0 |
+| CanToDrawerClose | 80.0 | 80.0 | 82.0 | 76.0 | 70.0 |
+| CupToDrawerClose | 50.0 | 34.0 | 50.0 | 44.0 | 60.0 |
+| MilkToMicrowaveClose | 58.0 | 60.0 | 38.0 | 68.0 | 60.0 |
+| PotatoToMicrowaveClose | 40.0 | 40.0 | 36.0 | 38.0 | 48.0 |
+| WineToCabinetClose | 60.0 | 48.0 | 60.0 | 54.0 | 68.0 |
+| FromCuttingboardToBasket | 54.0 | 48.0 | 46.0 | 64.0 | 54.0 |
+| FromCuttingboardToCardboardbox | 50.0 | 60.0 | 48.0 | 58.0 | 52.0 |
+| FromCuttingboardToPan | 80.0 | 74.0 | 78.0 | 72.0 | 72.0 |
+| FromCuttingboardToPot | 52.0 | 46.0 | 66.0 | 64.0 | 54.0 |
+| FromCuttingboardToTieredbasket | 44.0 | 54.0 | 50.0 | 50.0 | 46.0 |
+| FromPlacematToBasket | 58.0 | 40.0 | 44.0 | 54.0 | 54.0 |
+| FromPlacematToBowl | 64.0 | 66.0 | 72.0 | 60.0 | 56.0 |
+| FromPlacematToPlate | 66.0 | 62.0 | 64.0 | 54.0 | 58.0 |
+| FromPlacematToTieredshelf | 44.0 | 48.0 | 40.0 | 32.0 | 44.0 |
+| FromPlateToBowl | 64.0 | 74.0 | 54.0 | 72.0 | 52.0 |
+| FromPlateToCardboardbox | 50.0 | 54.0 | 52.0 | 56.0 | 52.0 |
+| FromPlateToPan | 58.0 | 68.0 | 70.0 | 68.0 | 56.0 |
+| FromPlateToPlate | 62.0 | 64.0 | 72.0 | 76.0 | 74.0 |
+| FromTrayToCardboardbox | 52.0 | 50.0 | 60.0 | 58.0 | 58.0 |
+| FromTrayToPlate | 64.0 | 64.0 | 58.0 | 60.0 | 50.0 |
+| FromTrayToPot | 68.0 | 70.0 | 66.0 | 64.0 | 74.0 |
+| FromTrayToTieredbasket | 50.0 | 46.0 | 50.0 | 42.0 | 50.0 |
+| FromTrayToTieredshelf | 42.0 | 36.0 | 28.0 | 30.0 | 44.0 |
+| **Average** | **56.7** | **56.6** | **56.3** | **57.4** | **57.3** |
 
 ### LIBERO Benchmark
 
