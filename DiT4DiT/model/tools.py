@@ -194,3 +194,13 @@ def read_mode_config(pretrained_checkpoint):
         raise FileNotFoundError(f"Pretrained checkpoint `{pretrained_checkpoint}` does not exist.")
     return global_cfg, norm_stats
 
+
+def get_default_device():
+    """Pick CUDA when present, else Intel XPU, else CPU."""
+    import torch
+
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    if hasattr(torch, "xpu") and torch.xpu.is_available():
+        return torch.device("xpu")
+    return torch.device("cpu")

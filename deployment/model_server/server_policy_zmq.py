@@ -11,6 +11,7 @@ import torch
 from deployment.model_server.tools.zmq_policy_server import ZmqPolicyServer
 from DiT4DiT.model.framework.base_framework import baseframework
 from DiT4DiT.model.framework.share_tools import read_mode_config
+from DiT4DiT.model.tools import get_default_device
 
 
 class UnnormalizedPolicyWrapper:
@@ -62,7 +63,8 @@ def main(args) -> None:
         logging.info("Converting model to bfloat16")
         vla = vla.to(torch.bfloat16)
 
-    vla = vla.to("cuda").eval()
+    device = torch.device(args.device) if args.device else get_default_device()
+    vla = vla.to(device).eval()
     logging.info("Model loaded and ready")
 
     # Load dataset statistics for action unnormalization
@@ -113,6 +115,12 @@ def build_argparser():
         "--use_bf16",
         action="store_true",
         help="Use bfloat16 precision for model",
+    )
+    parser.add_argument(
+        "--device",
+        type=str,
+        default=None,
+        help="cuda, xpu or cpu (default: first available of cuda, xpu, cpu)",
     )
     parser.add_argument(
         "--data_config",
