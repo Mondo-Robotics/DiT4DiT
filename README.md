@@ -188,6 +188,28 @@ Download the Cosmos-Predict2.5-2B model from Hugging Face:
 huggingface-cli download nvidia/Cosmos-Predict2.5-2B --revision diffusers/base/post-trained --local-dir /path/to/Cosmos-Predict2.5-2B
 ```
 
+### Run on Intel GPU (XPU)
+
+The policy server also runs on Intel GPUs. Install PyTorch for XPU instead of the CUDA build, and use `requirements-xpu.txt` instead of `requirements.txt` (it leaves out the CUDA-only packages: torch, torchvision, triton, nvidia-*, deepspeed and wandb):
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/xpu
+pip install -r requirements-xpu.txt
+pip install -e . --no-deps
+```
+
+Download the Cosmos-Predict2.5-2B backbone and a checkpoint as described in this README, then start the policy server with the same command as before plus `--device xpu`:
+
+```bash
+python deployment/model_server/server_policy.py \
+  --ckpt_path /path/to/checkpoint.pt \
+  --port 6398 \
+  --use_bf16 \
+  --device xpu
+```
+
+The simulation clients (LIBERO, RoboCasa) are unchanged. Run the server in half precision, `--use_bf16` or `--use_fp16`: the full model in float32 does not fit on one card. Without `--device` the server uses CUDA when available, then XPU, then CPU. Training stays CUDA-only.
+
 ## Model Zoo
 
 We release pretrained checkpoints to facilitate reproduction.

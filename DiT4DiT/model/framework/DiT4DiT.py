@@ -204,7 +204,11 @@ class DiT4DiT(baseframework):
     
         # Step 1: backbone input format
         backbone_inputs = self.backbone_interface.build_cosmos_inputs(images=batch_images, instructions=instructions)
-        with torch.autocast("cuda", dtype=torch.bfloat16):
+        device_type = self.backbone_interface.device.type
+        # A float16 model keeps float16 compute; every other dtype keeps the original bfloat16 autocast.
+        backbone_dtype = next(self.backbone_interface.parameters()).dtype
+        amp_dtype = torch.float16 if backbone_dtype == torch.float16 else torch.bfloat16
+        with torch.autocast(device_type, dtype=amp_dtype):
             backbone_outputs = self.backbone_interface(
                 **backbone_inputs,
                 output_attentions=False,
@@ -218,7 +222,14 @@ class DiT4DiT(baseframework):
         state = torch.from_numpy(np.array(state)).to(last_hidden.device, dtype=last_hidden.dtype) if state is not None else None
         
         # Step 4: Action Expert Forward
-        with torch.autocast("cuda", dtype=torch.float32):
+        if device_type == "cuda":
+            with torch.autocast("cuda", dtype=torch.float32):
+                pred_actions = self.action_model.predict_action(last_hidden, state)  # (B, chunk_len, action_dim)
+        else:
+            # Only CUDA autocast accepts float32, so run the action head in float32 explicitly.
+            self.action_model.float()
+            last_hidden = last_hidden.float()
+            state = state.float() if state is not None else None
             pred_actions = self.action_model.predict_action(last_hidden, state)  # (B, chunk_len, action_dim)
 
         normalized_actions = pred_actions.detach().cpu().numpy()

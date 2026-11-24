@@ -1,0 +1,21 @@
+# Inference dependencies for Intel XPU (see "Run on Intel GPU (XPU)" in README.md).
+# Install PyTorch for XPU first. requirements.txt is not used here because it pins
+# torch, torchvision, triton, the nvidia-* CUDA wheels, deepspeed and wandb, none of
+# which are needed for inference on XPU.
+transformers==4.57.6
+huggingface-hub==0.36.0
+diffusers @ git+https://github.com/huggingface/diffusers.git@3996788b602eaae4da41a1d45726b62e662b73cf
+accelerate==1.12.0
+safetensors
+einops==0.8.1
+omegaconf==2.3.0
+rich==14.2.0
+websockets==16.0
+msgpack==1.1.2
+typing_extensions
+tqdm
+tyro==1.0.5
+pillow
+numpy
+opencv-python-headless
+imageio
