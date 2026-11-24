@@ -205,7 +205,10 @@ class DiT4DiT(baseframework):
         # Step 1: backbone input format
         backbone_inputs = self.backbone_interface.build_cosmos_inputs(images=batch_images, instructions=instructions)
         device_type = self.backbone_interface.device.type
-        with torch.autocast(device_type, dtype=torch.bfloat16):
+        # A float16 model keeps float16 compute; every other dtype keeps the original bfloat16 autocast.
+        backbone_dtype = next(self.backbone_interface.parameters()).dtype
+        amp_dtype = torch.float16 if backbone_dtype == torch.float16 else torch.bfloat16
+        with torch.autocast(device_type, dtype=amp_dtype):
             backbone_outputs = self.backbone_interface(
                 **backbone_inputs,
                 output_attentions=False,

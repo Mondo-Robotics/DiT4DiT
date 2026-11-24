@@ -62,6 +62,9 @@ def main(args) -> None:
     if args.use_bf16:
         logging.info("Converting model to bfloat16")
         vla = vla.to(torch.bfloat16)
+    elif args.use_fp16:
+        logging.info("Converting model to float16")
+        vla = vla.to(torch.float16)
 
     device = torch.device(args.device) if args.device else get_default_device()
     vla = vla.to(device).eval()
@@ -115,6 +118,11 @@ def build_argparser():
         "--use_bf16",
         action="store_true",
         help="Use bfloat16 precision for model",
+    )
+    parser.add_argument(
+        "--use_fp16",
+        action="store_true",
+        help="Use float16 precision for model (instead of --use_bf16)",
     )
     parser.add_argument(
         "--device",

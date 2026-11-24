@@ -208,7 +208,7 @@ python deployment/model_server/server_policy.py \
   --device xpu
 ```
 
-The simulation clients (LIBERO, RoboCasa) are unchanged. Run the server in bf16 (`--use_bf16`): the full model in float32 does not fit on one card. Without `--device` the server uses CUDA when available, then XPU, then CPU. Training stays CUDA-only.
+The simulation clients (LIBERO, RoboCasa) are unchanged. Run the server in half precision, `--use_bf16` or `--use_fp16`: the full model in float32 does not fit on one card. Without `--device` the server uses CUDA when available, then XPU, then CPU. Training stays CUDA-only.
 
 ## Model Zoo
 
